@@ -1,7 +1,7 @@
 import logging
 import azure.functions as func
 from ..main import run_and_upload
-from ..weather_service import OpenMeteoWeatherService
+from ..services import OpenMeteoWeatherService
 
 
 def main(_: func.TimerRequest) -> None:

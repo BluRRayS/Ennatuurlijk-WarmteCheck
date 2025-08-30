@@ -8,7 +8,8 @@ from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient
 
 # Local imports
-from .weather_service import WeatherServiceInterface, OpenMeteoWeatherService
+from .services.weather_service import WeatherServiceInterface, OpenMeteoWeatherService
+from .config import get_app_config
 
 
 class Location(TypedDict):
@@ -97,6 +98,7 @@ def run_and_upload(weather_service: WeatherServiceInterface) -> Dict[str, Any]:
 
 if __name__ == "__main__":
     print("Running local WarmteCheck")
-    weather_service = OpenMeteoWeatherService()
+    app_config = get_app_config()
+    weather_service = OpenMeteoWeatherService(app_config.weather)
     out = run_and_upload(weather_service)
     print("Output written:", out)
