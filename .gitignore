@@ -133,7 +133,7 @@ bin
 obj
 appsettings.json
 local.settings.json
-.vscode/
+
 .azure/
 
 # OS generated files
@@ -164,3 +164,4 @@ Thumbs.db
 *.tfplan
 *.tfvars
 !*.tfvars.example
+.python_packages
