@@ -2,11 +2,11 @@ import json
 from typing import List
 import azure.functions as func
 
-from src.core.main import run_and_upload
-from src.core.services.weather_service import OpenMeteoWeatherService
-from src.core.services.storage_service import AzureBlobStorageService
-from src.core.config import get_app_config
-from src.core.models.location import Location
+from src.main import run_and_upload
+from src.services.weather_service import OpenMeteoWeatherService
+from src.services.storage_service import LocalStorageService
+from src.config import get_app_config
+from src.models.location import Location
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -28,7 +28,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
         # Setup services based on config
         weather_service = OpenMeteoWeatherService(app_config.weather)
-        storage_service = AzureBlobStorageService(app_config.storage)
+        storage_service = LocalStorageService(app_config.storage.local_storage_path)
 
         # Execute the main logic
         output_data = run_and_upload(weather_service, storage_service, locations)

@@ -165,3 +165,5 @@ Thumbs.db
 *.tfvars
 !*.tfvars.example
 .python_packages
+
+app/output/*

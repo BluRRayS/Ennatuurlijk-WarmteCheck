@@ -2,7 +2,7 @@ import os
 from dataclasses import dataclass
 from typing import List, Optional
 
-from app.src.core.models.location import Location
+from src.models.location import Location
 
 @dataclass
 class WeatherConfig:

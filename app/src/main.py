@@ -1,8 +1,8 @@
 from datetime import datetime, timezone
 from typing import List, Dict, Any
-from src.core.services.storage_service import StorageServiceInterface
-from src.core.services.weather_service import WeatherServiceInterface
-from src.core.models.location import Location
+from src.services.storage_service import StorageServiceInterface
+from src.services.weather_service import WeatherServiceInterface
+from src.models.location import Location
 
 
 def calculate_heating_index(temp_c: float) -> float:

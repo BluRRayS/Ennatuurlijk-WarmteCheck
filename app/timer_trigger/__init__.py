@@ -2,13 +2,13 @@ import logging
 import datetime
 import azure.functions as func
 
-from src.core.main import run_and_upload
-from src.core.services.weather_service import OpenMeteoWeatherService
-from src.core.services.storage_service import LocalStorageService
-from src.core.config import get_app_config
+from src.main import run_and_upload
+from src.services.weather_service import OpenMeteoWeatherService
+from src.services.storage_service import LocalStorageService
+from src.config import get_app_config
 
 
-def main(_: func.TimerRequest) -> None:
+def main(timer: func.TimerRequest) -> None:
     try:
         utc_timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
         logging.info("Timer triggered WarmteCheck at %s", utc_timestamp)
