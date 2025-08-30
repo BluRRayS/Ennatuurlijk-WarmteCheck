@@ -4,10 +4,12 @@ from typing import List, Optional
 
 from src.models.location import Location
 
+
 @dataclass
 class WeatherConfig:
     api_base_url: str = "https://api.open-meteo.com/v1/forecast"
     timeout_seconds: int = 10
+
 
 @dataclass
 class StorageConfig:
@@ -15,6 +17,7 @@ class StorageConfig:
     local_storage_path: str = "./output"
     account_name: Optional[str] = None
     container_name: str = "warmtecheck"
+
 
 @dataclass
 class AppConfig:
@@ -35,17 +38,18 @@ def load_env_file(file_path: str = ".env") -> None:
 
 def get_app_config() -> AppConfig:
     load_env_file()
-    
+
     weather_config = WeatherConfig(
-        api_base_url=os.getenv("WEATHER_API_BASE_URL", "https://api.open-meteo.com/v1/forecast"),
+        api_base_url=os.getenv("WEATHER_API_BASE_URL",
+                               "https://api.open-meteo.com/v1/forecast"),
         timeout_seconds=int(os.getenv("WEATHER_API_TIMEOUT", "10"))
     )
-    
+
     storage_config = StorageConfig(
         storage_type=os.getenv("STORAGE_TYPE", "local"),
         local_storage_path=os.getenv("LOCAL_STORAGE_PATH", "./output"),
         account_name=os.getenv("STORAGE_ACCOUNT_NAME"),
-        container_name=os.getenv("STORAGE_CONTAINER", "warmtecheck"),
+        container_name=os.getenv("STORAGE_CONTAINER", "warmtecheck")
     )
 
     default_locations = [Location(name="Eindhoven", lat=51.44, lon=5.47)]
