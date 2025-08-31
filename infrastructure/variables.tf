@@ -25,5 +25,5 @@ variable "project" {
 
 variable "service_plan_sku" {
   type    = string
-  default = "SHARED"
+  default = "Y1"
 }

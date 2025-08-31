@@ -13,7 +13,7 @@ resource "azurerm_resource_group" "warmte_check" {
 }
 
 resource "random_string" "storage_account_suffix" {
-  length = 10
+  length = 7
 
   special = false
   lower   = true
@@ -70,7 +70,7 @@ resource "azurerm_service_plan" "warmte_check" {
 }
 
 resource "azurerm_linux_function_app" "warmte_check" {
-  name                = "example-linux-function-app"
+  name                = "func-${local.tags.subscription}-${local.tags.project}-${local.tags.environment}"
   resource_group_name = azurerm_resource_group.warmte_check.name
   location            = azurerm_resource_group.warmte_check.location
 
