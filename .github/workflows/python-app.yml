@@ -1,0 +1,62 @@
+name: Python App CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'app/**'
+      - '.github/workflows/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+            pip install -r app/requirements-dev.txt
+      - name: Lint
+        id: linting
+        run: |
+          source .venv/bin/activate
+          PYTHONPATH=app flake8 app/src --config=app/.flake8
+        continue-on-error: true
+      - name: Linting warning error
+        if: steps.linting.outcome == 'failure'
+        run: |
+          # This special echo format creates a warning annotation in the GitHub UI as continue on error does not show that the step failed.
+          echo "::warning title=Linting Failed::Some of the linting checks did not pass. This did not fail the build, but should be investigated."
+      - name: Test
+        run: |
+          source .venv/bin/activate
+          PYTHONPATH=app pytest app/test
+      - name: Package Azure Function App
+        run: |
+          cd app
+          zip -r ../functionapp.zip .
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Deploy to Azure Functions
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ secrets.AZURE_FUNCTIONAPP_NAME }}
+          package: functionapp.zip
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}

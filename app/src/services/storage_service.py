@@ -27,6 +27,7 @@ class AzureBlobStorageService(StorageServiceInterface):
         if not config.account_name:
             raise ValueError("Azure Storage Account Name is not configured.")
         self.config = config
+
         account_url = f"https://{self.config.account_name}.blob.core.windows.net"
         self._client = BlobServiceClient(
             account_url=account_url, credential=DefaultAzureCredential()
@@ -46,7 +47,11 @@ class AzureBlobStorageService(StorageServiceInterface):
         container_client.get_blob_client(blob_name).upload_blob(
             json.dumps(payload), overwrite=True
         )
-        print(f"Payload uploaded to Azure Blob Storage: {self.config.container_name}/{blob_name}")
+
+        print(
+            f"Payload uploaded to Azure Blob Storage: "
+            f"{self.config.container_name}/{blob_name}"
+        )
 
 
 class LocalStorageService(StorageServiceInterface):
