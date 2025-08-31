@@ -44,9 +44,9 @@ resource "azurerm_storage_container" "data_container" {
 resource "azurerm_role_assignment" "function_app_storage" {
   scope                = azurerm_storage_account.warmte_check.id
   role_definition_name = "Storage Blob Data Contributor"
-  principal_id         = azurerm_function_app.warmte_check.identity[0].principal_id
+  principal_id         = azurerm_linux_function_app.warmte_check.identity[0].principal_id
 
-  depends_on = [azurerm_function_app.warmte_check]
+  depends_on = [azurerm_linux_function_app.warmte_check]
 }
 
 # In actual production scenarios, you would probably want to prevent the storage_account from being deleted to prevent data loss.
