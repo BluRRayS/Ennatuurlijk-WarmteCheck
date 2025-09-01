@@ -1,0 +1,42 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0" version="28.1.2">
+  <diagram name="Page-1" id="zA-djF4JZgrAjOgTnk0K">
+    <mxGraphModel dx="1576" dy="1973" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="CbjyBP5ZDkZpTct0hWwf-3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="110" y="10" width="710" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="CbjyBP5ZDkZpTct0hWwf-2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="150" y="100" width="630" height="550" as="geometry" />
+        </mxCell>
+        <mxCell id="CbjyBP5ZDkZpTct0hWwf-1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="220" y="240" width="290" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="CbjyBP5ZDkZpTct0hWwf-4" value="asp-ennatuurlijk-warmtecheck-prd" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/app_services/App_Service_Plans.svg;" vertex="1" parent="1">
+          <mxGeometry x="330" y="190" width="64" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="CbjyBP5ZDkZpTct0hWwf-5" value="func-ennatuurlijk-warmtecheck-prd" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/compute/Function_Apps.svg;" vertex="1" parent="1">
+          <mxGeometry x="326" y="346" width="68" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CbjyBP5ZDkZpTct0hWwf-6" value="stennatuurlijkwarmtecheckprd${random_suffix}" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/storage/Storage_Accounts.svg;" vertex="1" parent="1">
+          <mxGeometry x="620" y="350" width="65" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="CbjyBP5ZDkZpTct0hWwf-7" value="ennatuurlijk-warmtecheck-prd" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;" vertex="1" parent="1">
+          <mxGeometry x="412" y="-30" width="44" height="71" as="geometry" />
+        </mxCell>
+        <mxCell id="CbjyBP5ZDkZpTct0hWwf-8" value="rg-ennatuurlijk-warmtecheck-prd" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/general/Resource_Groups.svg;" vertex="1" parent="1">
+          <mxGeometry x="411" y="70" width="68" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="CbjyBP5ZDkZpTct0hWwf-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.031;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="CbjyBP5ZDkZpTct0hWwf-5" target="CbjyBP5ZDkZpTct0hWwf-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CbjyBP5ZDkZpTct0hWwf-10" value="writes to&lt;div&gt;using managed idenity&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CbjyBP5ZDkZpTct0hWwf-9">
+          <mxGeometry x="-0.1667" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
