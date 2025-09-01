@@ -35,6 +35,8 @@ class AzureBlobStorageService(StorageServiceInterface):
 
     def upload(self, payload: Dict[str, Any]) -> None:
         """Upload payload to Azure Blob Storage."""
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+        file_name = f"{timestamp}_warmtecheck.json"
         container_client = self._client.get_container_client(self.config.container_name)
         try:
             if not container_client.exists():
@@ -43,14 +45,13 @@ class AzureBlobStorageService(StorageServiceInterface):
             # Handle potential race conditions or permission issues gracefully
             pass
 
-        blob_name = self.config.blob_name
-        container_client.get_blob_client(blob_name).upload_blob(
+        container_client.get_blob_client(file_name).upload_blob(
             json.dumps(payload), overwrite=True
         )
 
         print(
             f"Payload uploaded to Azure Blob Storage: "
-            f"{self.config.container_name}/{blob_name}"
+            f"{self.config.container_name}/{file_name}"
         )
 
 
